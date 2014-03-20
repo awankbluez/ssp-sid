@@ -1,7 +1,7 @@
 package com.vaia.sspsid.entity;
 
-import com.vaia.sspsid.somepackage.TableRKVBean;
-import com.vaia.sspsid.somepackage.TableRKVBean;
+import com.vaia.sspsid.dao.TableRKVBean;
+import com.vaia.sspsid.dao.TableRKVBean;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,7 @@
 package com.vaia.sspsid.entity;
 
-import com.vaia.sspsid.somepackage.TableERBean;
-import com.vaia.sspsid.somepackage.TableERBean;
+import com.vaia.sspsid.dao.TableERBean;
+import com.vaia.sspsid.dao.TableERBean;
 
 import java.util.ArrayList;
 

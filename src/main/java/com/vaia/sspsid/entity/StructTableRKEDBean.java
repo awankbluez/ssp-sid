@@ -1,7 +1,7 @@
 package com.vaia.sspsid.entity;
 
-import com.vaia.sspsid.somepackage.TableRKEDBean;
-import com.vaia.sspsid.somepackage.TableRKEDBean;
+import com.vaia.sspsid.dao.TableRKEDBean;
+import com.vaia.sspsid.dao.TableRKEDBean;
 
 import java.util.ArrayList;
 

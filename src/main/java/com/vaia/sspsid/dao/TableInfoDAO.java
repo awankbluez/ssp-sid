@@ -1,61 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.vaia.sspsid.dao;
 
 import com.vaia.sspsid.entity.TableInfo;
-import com.vaia.sspsid.util.DAOUtil;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 
-/**
- *
- * @author Wirawan Adi <http://about.me/wirawan.adi>
- */
 @Stateless
-public class TableInfoDAO extends AbstractDAO {
+public class TableInfoDAO {
 
-    private static final String SQL_RETRIEVE_ALL = "select * from t_informasi order by create_dt desc";
-
-    @PostConstruct
-    private void init() {
-
-    }
-
-    public List<TableInfo> getTableInfos() {
-        Connection connection = getConnection();
-        List<TableInfo> tableInfos = null;
-        ResultSet resultSet = null;
-        PreparedStatement preparedStatement = null;
+    public List<TableInfo> getInfo() {
+        ArrayList<TableInfo> infos = new ArrayList<>();
 
         try {
-            preparedStatement = DAOUtil.prepareStatement(connection, SQL_RETRIEVE_ALL);
-            resultSet = preparedStatement.executeQuery();
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;DatabaseName=SIDWEB", "sa", "sa");
+            PreparedStatement ps = con.prepareStatement("select * from t_informasi order by create_dt desc");
 
-            while (resultSet.next()) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
                 TableInfo e = new TableInfo();
-                e.setIf1(resultSet.getString("id_info"));
-                e.setIf2(resultSet.getString("desc_info"));
-                e.setIf3(resultSet.getString("create_dt"));
-                e.setIf4(resultSet.getString("update_dt"));
-                tableInfos.add(e);
+                e.setIf1(rs.getString("id_info"));
+                e.setIf2(rs.getString("desc_info"));
+                e.setIf3(rs.getString("create_dt"));
+                e.setIf4(rs.getString("update_dt"));
+                infos.add(e);
             }
+            rs.close();
 
-        } catch (SQLException e) {
-
-        } finally {
-            DAOUtil.close(connection, preparedStatement, resultSet);
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Error In getInfo() -->" + e.getMessage());
         }
 
-        return tableInfos;
-
+        return infos;
     }
-
 }

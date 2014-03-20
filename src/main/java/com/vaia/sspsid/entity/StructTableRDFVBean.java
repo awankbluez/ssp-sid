@@ -1,7 +1,7 @@
 package com.vaia.sspsid.entity;
 
-import com.vaia.sspsid.somepackage.TableRDFVBean;
-import com.vaia.sspsid.somepackage.TableRDFVBean;
+import com.vaia.sspsid.dao.TableRDFVBean;
+import com.vaia.sspsid.dao.TableRDFVBean;
 
 import java.util.ArrayList;
 

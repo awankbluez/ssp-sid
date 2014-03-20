@@ -1,10 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                template="/WEB-INF/template/template.xhtml"
+                template="./template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:pe="http://primefaces.org/ui/extensions"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <ui:define name="page">
@@ -12,7 +13,7 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:form>
+        <h:form id="formIndex">
             <p:tabView id="tabView">
                 <p:tab id="tab1" title="Informasi">
                     <p:panel header="">
@@ -28,11 +29,15 @@
                             </p:column>
 
                             <p:column style="text-align:center; width:12%" headerText="Tanggal Posting">
-                                <h:outputText value="#{tableInfo.if3}"/>
+                                <h:outputText value="#{tableInfo.if3}">
+                                    <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                </h:outputText>
                             </p:column>
 
                             <p:column style="text-align:center; width:12%" headerText="Tanggal Update">
-                                <h:outputText value="#{tableInfo.if4}"/>
+                                <h:outputText value="#{tableInfo.if4}">
+                                    <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                </h:outputText>
                             </p:column>
                         </p:dataTable>
 
@@ -46,27 +51,22 @@
 
                 <p:tab id="tab2" title="Referensi Dati 2">
                     <p:panel header="">
-                        <p:dataTable id="dati2" value="#{StructRDT.messagesRDT}" var="g"
+                        <p:dataTable id="dati2" value="#{indexBean.rdts}" var="rdt"
                                      style="overflow: auto;width: 100%;height:400px">
-                            <p:column style="text-align:center;width:12%" filterBy="#{g.rdtf1}" sortBy="#{g.rdtf1}" filterMatchMode="contains">
-                                <f:facet name="header"> 
-                                    <h:outputText value="Kode Dati 2" /> 
-                                </f:facet>
-                                <h:outputText value="#{g.rdtf1}"/>
+
+                            <p:column style="text-align:center;width:12%" filterBy="#{rdt.rdtf1}" sortBy="#{rdt.rdtf1}" filterMatchMode="contains" headerText="Kode Dati 2">
+                                <h:outputText value="#{rdt.rdtf1}"/>
                             </p:column>
-                            <p:column filterBy="#{g.rdtf2}" sortBy="#{g.rdtf2}" filterMatchMode="contains">
-                                <f:facet name="header"> 
-                                    <h:outputText value="Dati 2" /> 
-                                </f:facet>
-                                <h:outputText value="#{g.rdtf2}"/>
+
+                            <p:column filterBy="#{rdt.rdtf2}" sortBy="#{rdt.rdtf2}" filterMatchMode="contains" headerText="Dati 2">
+                                <h:outputText value="#{rdt.rdtf2}"/>
                             </p:column>
-                            <p:column style="text-align:center;width:12%" filterBy="#{g.rdtf3}" sortBy="#{g.rdtf3}" filterMatchMode="startsWith">
-                                <f:facet name="header"> 
-                                    <h:outputText value="Kodepos" /> 
-                                </f:facet>
-                                <h:outputText value="#{g.rdtf3}"/>
+
+                            <p:column style="text-align:center;width:12%" filterBy="#{rdt.rdtf3}" sortBy="#{rdt.rdtf3}" filterMatchMode="startsWith" headerText="Kodepos">
+                                <h:outputText value="#{rdt.rdtf3}"/>
                             </p:column>
                         </p:dataTable>
+
                         <f:facet name="actions">
                             <h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
                                 <h:outputText styleClass="ui-icon ui-icon-help" />
@@ -77,32 +77,24 @@
 
                 <p:tab id="tab3" title="Referensi Kode Error">
                     <p:panel header="">
-                        <p:dataTable id="erdesk" value="#{StructED.messagesED}" var="h"
+                        <p:dataTable id="erdesk" value="#{indeBean.eds}" var="ed"
                                      style="overflow: auto;width: 100%;height:400px">
-                            <p:column style="text-align:center; width:7%" filterBy="#{h.edf1}" sortBy="#{h.edf1}" filterMatchMode="contains">
-                                <f:facet name="header"> 
-                                    <h:outputText value="Kode Error" /> 
-                                </f:facet>
-                                <h:outputText value="#{h.edf1}"/>
+                            <p:column style="text-align:center; width:7%" filterBy="#{ed.edf1}" sortBy="#{ed.edf1}" filterMatchMode="contains" headerText="Kode Error">
+                                <h:outputText value="#{ed.edf1}"/>
                             </p:column>
-                            <p:column filterBy="#{h.edf2}" sortBy="#{h.edf2}" filterMatchMode="contains">
-                                <f:facet name="header"> 
-                                    <h:outputText value="Deskripsi / Menu Perbaikan" /> 
-                                </f:facet>
-                                <h:outputText value="#{h.edf2}"/>
+
+                            <p:column filterBy="#{ed.edf2}" sortBy="#{ed.edf2}" filterMatchMode="contains" headerText="Deskripsi / Menu Perbaikan">
+                                <h:outputText value="#{ed.edf2}"/>
                             </p:column>
-                            <p:column style="text-align:center; width:7%">
-                                <f:facet name="header"> 
-                                    <h:outputText value="Form" /> 
-                                </f:facet>
-                                <h:outputText value="#{h.edf3}"/>
+
+                            <p:column style="text-align:center; width:7%" headerText="Form">
+                                <h:outputText value="#{ed.edf3}"/>
                             </p:column>
-                            <p:column style="text-align:center; width:12%">
-                                <f:facet name="header"> 
-                                    <h:outputText value="Field SIDBANK" /> 
-                                </f:facet>
-                                <h:outputText value="#{h.edf4}"/>
+
+                            <p:column style="text-align:center; width:12%" headerText="Field SID BANK">
+                                <h:outputText value="#{ed.edf4}"/>
                             </p:column>
+
                         </p:dataTable>
                         <f:facet name="actions">
                             <h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
@@ -112,6 +104,37 @@
                     </p:panel>
                 </p:tab>
 
+                <p:tab title="Testing">
+                    <p:fieldset legend="Tes">
+                        <h:panelGrid columns="2">
+                            <p:outputLabel for="tesInput" value="Tampilkan Button"/>
+                            <p:selectOneMenu id="tesInput" value="#{indexBean.tesValueButton}">
+                                <f:selectItem itemLabel="Button 1" itemValue="1"/>
+                                <f:selectItem itemLabel="Button 2" itemValue="2"/>
+                                <f:selectItem itemLabel="Button 3" itemValue="3"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="buttonTes" value="Button Tes"/>
+                            <p:commandButton id="buttonTes" value="Update" update="gridUpdate" process="tesInput"/>
+                        </h:panelGrid>
+
+                        <p:spacer height="10"/>
+
+                        <h:panelGrid id="gridUpdate">
+                            <h:panelGrid id="grid1" rendered="#{indexBean.tesValueButton == 1}">
+                                <p:commandButton value="Button 1"/>
+                            </h:panelGrid>
+
+                            <h:panelGrid id="grid2" rendered="#{indexBean.tesValueButton == 2}">
+                                <p:commandButton value="Button 2"/>
+                            </h:panelGrid>
+
+                            <h:panelGrid id="grid3" rendered="#{indexBean.tesValueButton == 3}">
+                                <p:commandButton value="Button 3"/>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </p:fieldset>
+                </p:tab>
             </p:tabView>
         </h:form>
     </ui:define>

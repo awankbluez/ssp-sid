@@ -1,7 +1,7 @@
 package com.vaia.sspsid.util;
 
-import com.vaia.sspsid.somepackage.TableUserBean;
-import com.vaia.sspsid.somepackage.TableUserBean;
+import com.vaia.sspsid.dao.TableUserBean;
+import com.vaia.sspsid.dao.TableUserBean;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -20,7 +20,7 @@ public class AbstractDAO {
 
     private static final Logger LOG = Logger.getLogger(AbstractDAO.class.getName());
 
-    @Resource(name = "jdbc/sidbri")
+    @Resource(lookup = "java:app/jdbc/sidbri")
     private DataSource sidBriDataSource;
 
     protected Connection getConnection() {

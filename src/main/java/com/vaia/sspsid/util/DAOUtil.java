@@ -140,19 +140,19 @@ public final class DAOUtil {
     public static void log(Logger logger, LogLevel logLevel, String logMessage) {
         switch (logLevel) {
             case ERROR:
-                logger.log(Level.SEVERE, logMessage);
+                System.out.println("Error" + logMessage);
                 break;
             case WARN:
-                logger.log(Level.WARNING, logMessage);
+                System.out.println("Warn" + logMessage);
                 break;
             case INFO:
-                logger.info(logMessage);
+                System.out.println("Info" + logMessage);
                 break;
             case DEBUG:
-                logger.log(Level.FINE, logMessage);
+                System.out.println("Debug" + logMessage);
                 break;
             case TRACE:
-                logger.log(Level.FINER, logMessage);
+                System.out.println("Trace" + logMessage);
                 break;
             default:
                 break;

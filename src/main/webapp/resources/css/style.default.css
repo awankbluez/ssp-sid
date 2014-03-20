@@ -2782,7 +2782,7 @@ html, body {height: 100%;}
 /* END bootstrap position */
 
 #header-wm{
-    background-color: #e8e8e8;
+    /*background-color: #e8e8e8;*/
     font-family: 'RobotoCondensed',Arial,Helvetica,sans-serif;
     color: #1e6fa3;
     padding: 10px 20px;
@@ -2821,7 +2821,7 @@ html, body {height: 100%;}
 }
 
 #menu-wm, #menu-wm ul{
-    background: none repeat scroll 0 0 #1e6fa3;
+    background: none repeat scroll 0 0 #005e6a;
 }
 
 #menu-wm ul li {

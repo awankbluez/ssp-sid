@@ -1,8 +1,6 @@
 package com.vaia.sspsid.entity;
 
-import com.vaia.sspsid.somepackage.TableInfoBean;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class TableInfo implements Serializable {
 
@@ -43,9 +41,4 @@ public class TableInfo implements Serializable {
     public void setIf4(String if4) {
         this.if4 = if4;
     }
-
-    public ArrayList<TableInfo> getMessagesInfo() {
-        return TableInfoBean.getInfo();
-    }
-
 }

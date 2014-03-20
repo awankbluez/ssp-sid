@@ -28,7 +28,7 @@
     <resource-ref>
         <description>Connection Datasource
         </description>
-        <res-ref-name>jdbc/sidbri</res-ref-name>
+        <res-ref-name>java:app/jdbc/sidbri</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Unshareable</res-sharing-scope>

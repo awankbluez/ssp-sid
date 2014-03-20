@@ -17,8 +17,8 @@
                 <h:panelGroup style="height: 20px; font-family: Arial;" layout="block"/>
                 <h:panelGroup layout="block">
                     <h:panelGrid columns="2">
-                        <h:outputText value="Sistem Sentralisasi Pelaporan" style="color: #FB9337; font-weight: bold;"/>
-                        <h:outputText value="SID" style="font-weight: bold;"/>
+                        <h:outputText value="Sistem Sentralisasi Pelaporan" style="color: #f05921; font-weight: bold;"/>
+                        <h:outputText value="SID" style="font-weight: bold; color: #005e6a;"/>
                     </h:panelGrid>
                 </h:panelGroup>
             </h:panelGroup>
@@ -69,16 +69,16 @@
     <!--MENU BAR-->
     <p:menubar id="menu-wm">
         <p:submenu label="System" icon="ui-icon-home">
-            <p:menuitem value="SSP-SID Engine" url="engine.jsf" icon="ui-icon-gear"/>
+            <p:menuitem value="SSP-SID Engine" url="engine.xhtml" icon="ui-icon-gear"/>
             <p:submenu label="Setting Parameter" icon="ui-icon-wrench">
-                <p:menuitem value="Validasi" url="viewrolevalidasi.jsf" icon="ui-icon-flag"/>
+                <p:menuitem value="Validasi" url="viewrolevalidasi.xhtml" icon="ui-icon-flag"/>
                 <p:menuitem value="Buka/Tutup Fields" url="#" icon="ui-icon-locked"/>
             </p:submenu>
         </p:submenu>
 
         <p:submenu label="SID Tools" icon="ui-icon-person">
-            <p:menuitem value="Informasi" url="index.jsf" icon="ui-icon-note"></p:menuitem>
-            <p:menuitem value="Rekap Validasi" url="er.jsf" icon="ui-icon-print"></p:menuitem>
+            <p:menuitem value="Informasi" url="index.xhtml" icon="ui-icon-note"></p:menuitem>
+            <p:menuitem value="Rekap Validasi" url="er.xhtml" icon="ui-icon-print"></p:menuitem>
         </p:submenu>
     </p:menubar>  
 </ui:composition>

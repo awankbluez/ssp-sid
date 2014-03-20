@@ -5,7 +5,12 @@
  */
 package com.vaia.sspsid.managedBean;
 
+import com.vaia.sspsid.dao.TableEDBean;
 import com.vaia.sspsid.dao.TableInfoDAO;
+import com.vaia.sspsid.dao.TableInfoDAO1;
+import com.vaia.sspsid.dao.TableRDTBean;
+import com.vaia.sspsid.entity.RDT;
+import com.vaia.sspsid.entity.StructTableEDBean;
 import com.vaia.sspsid.entity.TableInfo;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -22,8 +27,19 @@ import javax.inject.Named;
 public class IndexMB extends AbstractManagedBean {
 
     @EJB
-    private TableInfoDAO tableInfoDAO;
+    private TableInfoDAO1 tableInfoDAO; // kurang benar
+    @EJB
+    private TableInfoDAO tableInfoBean;
+    @EJB
+    private TableRDTBean tableRDTBean;
+    @EJB
+    private TableEDBean tableEDBean;
+
     private List<TableInfo> tableInfos;
+    private List<RDT> rdts;
+    private List<StructTableEDBean> eds;
+
+    private Integer tesValueButton;
 
     @PostConstruct
     private void init() {
@@ -31,7 +47,9 @@ public class IndexMB extends AbstractManagedBean {
     }
 
     private void populate() {
-        tableInfos = tableInfoDAO.getTableInfos();
+        tableInfos = tableInfoBean.getInfo();
+        rdts = tableRDTBean.getRDT();
+        eds = tableEDBean.getED();
     }
 
     public List<TableInfo> getTableInfos() {
@@ -40,6 +58,30 @@ public class IndexMB extends AbstractManagedBean {
 
     public void setTableInfos(List<TableInfo> tableInfos) {
         this.tableInfos = tableInfos;
+    }
+
+    public List<RDT> getRdts() {
+        return rdts;
+    }
+
+    public void setRdts(List<RDT> rdts) {
+        this.rdts = rdts;
+    }
+
+    public List<StructTableEDBean> getEds() {
+        return eds;
+    }
+
+    public void setEds(List<StructTableEDBean> eds) {
+        this.eds = eds;
+    }
+
+    public Integer getTesValueButton() {
+        return tesValueButton;
+    }
+
+    public void setTesValueButton(Integer tesValueButton) {
+        this.tesValueButton = tesValueButton;
     }
 
 }

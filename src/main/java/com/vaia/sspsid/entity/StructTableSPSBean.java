@@ -1,7 +1,7 @@
 package com.vaia.sspsid.entity;
 
-import com.vaia.sspsid.somepackage.TableSPSBean;
-import com.vaia.sspsid.somepackage.TableSPSBean;
+import com.vaia.sspsid.dao.TableSPSBean;
+import com.vaia.sspsid.dao.TableSPSBean;
 
 import java.util.ArrayList;
 
