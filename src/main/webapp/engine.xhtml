@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<!--  When you make your own projects, copy and rename sample-file-with-form.xhtml
+      or sample-file-no-form.xhtml. Don't copy and rename THIS file, because
+      this file has too many extraneous things in it. -->
+<f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces - ShowCase</title>
+            </f:facet>
+
+            <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/default.css" />
+            <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/syntaxhighlighter/syntaxhighlighter.css" />
+
+            <style type="text/css">
+                .ui-layout-north {
+                    z-index:20 !important;
+                    overflow:visible !important;;
+                }
+
+                .ui-layout-north .ui-layout-unit-content {
+                    overflow:visible !important;
+                }
+            </style>
+        </h:head>
+
+
+        <h:body>
+
+            <p:layout fullPage="true" >
+
+                <p:layoutUnit id="top" position="north" size="50">
+
+                    <p:menubar>
+                        <p:submenu label="System" icon="ui-icon-home">
+                        	<p:menuitem value="SSP-SID Engine" url="engine.jsf" icon="ui-icon-gear"/>
+                            <p:submenu label="Setting Parameter" icon="ui-icon-wrench">
+                                <p:menuitem value="Validasi" url="viewrolevalidasi.jsf" icon="ui-icon-flag"/>
+                                <p:menuitem value="Buka/Tutup Fields" url="#" icon="ui-icon-locked"/>
+                            </p:submenu>
+                        </p:submenu>
+
+                        <p:submenu label="SID Tools" icon="ui-icon-person">
+                        	<p:menuitem value="Informasi" url="index.jsf" icon="ui-icon-note"></p:menuitem>
+                            <p:menuitem value="Rekap Validasi" url="er.jsf" icon="ui-icon-print"></p:menuitem>
+                        </p:submenu>
+                        
+                        <f:facet name="options">  
+				            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />  
+				        </f:facet>  
+                    </p:menubar>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="center" position="center">
+                    <h:form>
+
+					<p:panel header="STATUS SUMBER DATA">
+						<p:dataTable value="#{StructSD.messages}" var="a"
+				    	widgetVar="200" style="width: 100%" >
+				        	<p:column style="width:40%;text-align:right">
+				        		<f:facet name="header"> 
+				            	<h:outputText value="Sumber Data" /> 
+				           		</f:facet>
+				            	<h:outputText value="#{a.f1}"/>
+				            </p:column>
+				            <p:column style="width:13%;text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="Posisi Data" /> 
+				                </f:facet>
+				                <h:outputText value="#{a.f2}"/>
+				            </p:column>
+				            <p:column>
+				                <f:facet name="header"> 
+				                <h:outputText value="Status" /> 
+				                </f:facet>
+				                <h:outputText value="#{a.f3}"/>
+				            </p:column>
+				        </p:dataTable>
+						<f:facet name="actions">
+				            <h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				                <h:outputText styleClass="ui-icon ui-icon-help" />
+				            </h:commandLink>
+				        </f:facet>
+					</p:panel>
+					
+					<br></br>
+					<p:panel header="OPSI PROSES">
+						<h:panelGrid columns="1" style="width:100%;text-align:center" cellpadding="5">    
+				        <p:selectOneButton value="#{buttonBean.number}" id="inputNumber">  
+				            <f:selectItem itemLabel="proses harian (output : request DIN)" itemValue="1" />  
+				            <f:selectItem itemLabel="proses bulanan (output : request DIN dan SIDEKS)" itemValue="2" />    
+				        </p:selectOneButton>  
+				    	</h:panelGrid> 
+						<f:facet name="actions">
+				            <h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				                <h:outputText styleClass="ui-icon ui-icon-help" />
+				            </h:commandLink>
+				        </f:facet>
+					</p:panel>
+				    
+				    <p:panel header="STATUS PROSES">
+						<h:panelGrid columns="3" style="width:100%;text-align:center" cellpadding="5">  
+				    	<p:commandButton value="Mulai Proses SSP-SID" update="outputButton" process="inputNumber"/>
+				    	
+				    	<h:outputText value="#{buttonBean.number}" id="outputButton"></h:outputText>
+				    	
+				    	<p:dataTable value="#{StructSPS.messages}" var="b"
+				    	widgetVar="200" style="width: 100%" >
+				        	<p:column>
+				        		<f:facet name="header"> 
+				            	<h:outputText value="Opsi Dipilih" /> 
+				           		</f:facet>
+				            	<h:outputText value="#{b.spsf1}"/>
+				            </p:column>
+				            <p:column style="width:13%;text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="Waktu Dibutuhkan Proses Sebelumnya" /> 
+				                </f:facet>
+				                <h:outputText value="#{b.spsf2}"/>
+				            </p:column>
+				            <p:column>
+				                <f:facet name="header"> 
+				                <h:outputText value="Tgl Mulai Proses" /> 
+				                </f:facet>
+				                <h:outputText value="#{b.spsf3}"/>
+				            </p:column>
+				            <p:column>
+				                <f:facet name="header"> 
+				                <h:outputText value="Estimasi Tgl Selesai Proses" /> 
+				                </f:facet>
+				                <h:outputText value="#{b.spsf4}"/>
+				            </p:column>
+				            <p:column>
+				                <f:facet name="header"> 
+				                <h:outputText value="Status Proses" /> 
+				                </f:facet>
+				                <h:outputText value="#{b.spsf5}"/>
+				            </p:column>
+				            <p:column>
+				                <f:facet name="header"> 
+				                <h:outputText value="Proses Sedang Berjalan" /> 
+				                </f:facet>
+				                <h:outputText value="#{b.spsf6}"/>
+				            </p:column>
+				            <p:column>
+				                <f:facet name="header"> 
+				                <h:outputText value="Aktual Tgl Selesai Proses" /> 
+				                </f:facet>
+				                <h:outputText value="#{b.spsf7}"/>
+				            </p:column>
+				            <p:column>
+				                <f:facet name="header"> 
+				                <h:outputText value="Aktual Waktu Proses" /> 
+				                </f:facet>
+				                <h:outputText value="#{b.spsf8}"/>
+				            </p:column>
+				        </p:dataTable>
+				    	
+				  		</h:panelGrid>
+						<f:facet name="actions">
+				            <h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				                <h:outputText styleClass="ui-icon ui-icon-help" />
+				            </h:commandLink>
+				        </f:facet>
+					</p:panel>    
+					
+					<br></br>
+					<p:panel header="PROSES SID">
+			        <p:dataTable value="#{TableUser.messages}" var="o"
+			    	widgetVar="200" style="width: 100%" >
+			        	<p:column style="width:5%;text-align:center">
+			        		<f:facet name="header"> 
+			            	<h:outputText value="Proses" /> 
+			           		</f:facet>
+			            	<h:outputText value="#{o.f1}"/>
+			            </p:column>
+			            <p:column style="width:8%;text-align:center">
+			                <f:facet name="header"> 
+			                <h:outputText value="Sub Proses" /> 
+			                </f:facet>
+			                <h:outputText value="#{o.f2}"/>
+			            </p:column>
+			            <p:column filterBy="#{o.f3}">
+			                <f:facet name="header"> 
+			                <h:outputText value="Deskripsi" /> 
+			                </f:facet>
+			                <h:outputText value="#{o.f3}"/>
+			            </p:column>
+			            <p:column style="width:10%;text-align:center">
+			                <f:facet name="header"> 
+			                <h:outputText value="Status" /> 
+			                </f:facet>
+			                <h:outputText value="#{o.f4}"/>
+			            </p:column>
+			            <p:column style="width:10%;text-align:center">
+			                <f:facet name="header"> 
+			                <h:outputText value="Tgl Terakhir Proses" /> 
+			                </f:facet>
+			                <h:outputText value="#{o.f5}"/>
+			            </p:column>
+			            <p:column style="width:11%;text-align:center">
+			                <f:facet name="header"> 
+			                <h:outputText value="Waktu Dibutuhkan proses harian (min)" /> 
+			                </f:facet>
+			                <h:outputText value="#{o.f6}"/>
+			            </p:column>
+			            <p:column style="width:11%;text-align:center">
+			                <f:facet name="header"> 
+			                <h:outputText value="Waktu Dibutuhkan proses bulanan (min)" /> 
+			                </f:facet>
+			                <h:outputText value="#{o.f7}"/>
+			            </p:column>
+			        </p:dataTable>
+			        <f:facet name="actions">
+			            <h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+			                <h:outputText styleClass="ui-icon ui-icon-help" />
+			            </h:commandLink>
+			        </f:facet>
+			    </p:panel>
+
+                </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+            <p:dialog header="Basic Dialog" widgetVar="dlg" modal="true">
+                <h:outputText value="Resistance to PrimeFaces is futile!" />
+            </p:dialog>
+
+        </h:body>
+
+    </f:view>
+
+</html>

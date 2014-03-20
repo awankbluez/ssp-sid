@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:o="http://omnifaces.org/ui">
+
+    <f:view encoding="UTF-8" contentType="text/html; charset=utf-8">
+
+        <!--/* METADATA */-->
+        <ui:insert name="metadata"/>
+
+        <h:head>
+            <title>
+                <ui:insert name="page">
+                    <h:outputText value="Sistem Sentralisasi Pelaporan - SID"/>
+                </ui:insert>
+            </title>
+            <ui:param name="root" value="#{facesContext.externalContext.requestContextPath}"/>
+            <link href="#{resource['dolphin3d.ico']}" rel="shortcut icon" type="image/x-icon" />
+
+            <f:facet name="first">
+                <h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
+                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+            </f:facet>
+
+            <script>
+                PrimeFaces.locales ['in'] = {
+                    closeText: 'Tutup',
+                    prevText: 'Kembali',
+                    nextText: 'Selanjutnya',
+                    monthNames: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+                    monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
+                    dayNames: ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'],
+                    dayNamesShort: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'],
+                    dayNamesMin: ['M', 'S', 'S', 'R', 'K', 'J ', 'S'],
+                    weekHeader: 'Minggu',
+                    firstDay: 1,
+                    isRTL: false,
+                    showMonthAfterYear: false,
+                    yearSuffix: '',
+                    timeOnlyTitle: 'Waktu Saja',
+                    timeText: 'Waktu',
+                    hourText: 'Jam',
+                    minuteText: 'Menit',
+                    secondText: 'Detik',
+                    currentText: 'Hari Ini',
+                    ampm: false,
+                    month: 'Bulan',
+                    week: 'minggu',
+                    day: 'Hari',
+                    allDayText: 'Sehari Penuh'
+                };
+            </script>
+
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        </h:head>
+
+        <h:body>
+            <f:facet name="last">
+                <h:outputStylesheet name="css.aggr.css" library="css"/>
+                <h:outputScript name="js.aggr.js" library="js" target="head"/>
+            </f:facet>
+
+            <!--BODY WRAPPER-->
+            <div id="wrap">
+                <div class="bodywrapper">
+
+                    <!--/* HEADER */-->
+                    <ui:include src="header.xhtml"/>
+
+                    <div class="pageheader notab">
+                        <h3 class="pagetitle">
+                            <ui:insert name="title">
+                                <h:outputText value="SSP - SID"/>
+                            </ui:insert>
+                        </h3>
+                        <span class="pagedesc">
+                            <ui:insert name="desk">
+
+                            </ui:insert>
+                        </span>
+                    </div>
+
+                    <!--/* CONTENT */-->
+                    <div id="contentwrapper" class="contentwrapper">
+                        <ui:insert name="content">
+                            <h:outputText value="Content"/>
+                        </ui:insert>
+
+                        <!-- Keyfilter declaration -->
+                        <pe:keyFilter for="@(.num)" mask="num"/>
+                        <pe:keyFilter for="@(.alphanum)" regEx="/([A-Za-z0-9._\-]+)/"/>
+                        <pe:keyFilter for="@(.alphadotspace)" regEx="/[A-Za-z .]/"/>
+                    </div><!--contentwrapper-->
+
+                    <br clear="all" />
+
+                    <div id="push"></div>
+
+                </div>
+            </div>
+
+            <footer id="footer">
+                <div class="container">
+                    <h:outputText value="Copyright of Vaia 2013 - 2014 All Rights Reserved"/>
+                </div>
+            </footer>
+
+            <!--global tooltips-->
+            <pe:tooltip global="true" />
+
+            <!--ajax status loader-->
+            <p:ajaxStatus id="ajaxStatusPanel">
+                <f:facet name="start">
+                    <h:graphicImage library="images" name="loaders/cube_64.gif" styleClass="ajaxLoader"/>
+                </f:facet>
+                <f:facet name="complete">
+                    <span></span>
+                </f:facet>
+                <f:facet name="default">
+                    <span></span>
+                </f:facet>
+            </p:ajaxStatus>
+
+            <!--global component using omnifaces highlight-->
+            <o:highlight styleClass="error invalid"/>
+        </h:body>
+    </f:view>
+</html>

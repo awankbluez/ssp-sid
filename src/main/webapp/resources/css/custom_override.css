@@ -1,0 +1,55 @@
+/* 
+    Document   : custom_override
+    Created on : May 1, 2013, 11:16:23 AM
+    Author     : Wirawan Adi
+    Description:
+        override Primefaces CSS
+*/
+
+.hideBorderPanelGrid tr, .hideBorderPanelGrid td{
+    border : none !important;
+}
+
+.grid td {
+    border: 0px none !important;
+}
+
+.centerColumnContent{
+    text-align: center;
+}
+
+/*fix width selectOneMenu primefaces*/
+.ui-selectonemenu label.ui-selectonemenu-label {
+    padding-right: 28px;
+    text-align: left;
+}
+
+.verticalAlignTop td{
+    vertical-align: middle;
+}
+
+/*
+    Set all table spacing at 5  due to cellspacing="5" tag deprecated
+*/
+table {
+    border-collapse:separate; border-spacing: 5px !important; 
+}
+
+/*
+    Set legend color to different than button colors
+*/
+.ui-fieldset-legend{   
+    background: #1e6fa3 !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+    border-radius: 4px !important;   
+}
+
+
+/*
+    Reset mneubar border color to same as theme
+*/
+.ui-menu.ui-menubar{
+    border-radius: 0 0 0 0 !important;
+    border: 1px solid #1e6fa3 !important;
+}

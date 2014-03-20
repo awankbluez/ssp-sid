@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<!--  When you make your own projects, copy and rename sample-file-with-form.xhtml
+      or sample-file-no-form.xhtml. Don't copy and rename THIS file, because
+      this file has too many extraneous things in it. -->
+<f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces - ShowCase</title>
+            </f:facet>
+
+            <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/default.css" />
+            <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/syntaxhighlighter/syntaxhighlighter.css" />
+
+            <style type="text/css">
+                .ui-layout-north {
+                    z-index:20 !important;
+                    overflow:visible !important;;
+                }
+
+                .ui-layout-north .ui-layout-unit-content {
+                    overflow:visible !important;
+                }
+            </style>
+        </h:head>
+
+
+        <h:body>
+
+            <p:layout fullPage="true" >
+
+                <p:layoutUnit id="top" position="north" size="50">
+
+                    <p:menubar>
+                        <p:submenu label="System" icon="ui-icon-home">
+                        	<p:menuitem value="SSP-SID Engine" url="engine.jsf" icon="ui-icon-gear"/>
+                            <p:submenu label="Setting Parameter" icon="ui-icon-wrench">
+                                <p:menuitem value="Validasi" url="viewrolevalidasi.jsf" icon="ui-icon-flag"/>
+                                <p:menuitem value="Buka/Tutup Fields" url="#" icon="ui-icon-locked"/>
+                            </p:submenu>
+                        </p:submenu>
+
+                        <p:submenu label="SID Tools" icon="ui-icon-person">
+                        	<p:menuitem value="Informasi" url="index.jsf" icon="ui-icon-note"></p:menuitem>
+                            <p:menuitem value="Rekap Validasi" url="er.jsf" icon="ui-icon-print"></p:menuitem>
+                        </p:submenu>
+                        
+                        <f:facet name="options">  
+				            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />  
+				        </f:facet>  
+                    </p:menubar>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="center" position="center">
+                <h:form>
+			    	<p:tabView id="tabView">
+				    <p:tab id="tab1" title="Role Validasi Tabel 1">
+				        <p:panel header="">
+				        <p:dataTable id="RV0112" value="#{StructRDFV.messagesRDFV}" var="b"
+	        			style="overflow: auto;width: 100%;height:400px">
+				        	<p:column filterBy="#{b.rdfvf1}">
+				        		<f:facet name="header"> 
+				            	<h:outputText value="Form" /> 
+				           		</f:facet>
+				            	<h:outputText value="#{b.rdfvf1}"/>
+				            </p:column>
+				            <p:column filterBy="#{b.rdfvf2}" sortBy="#{b.rdfvf2}" filterMatchMode="contains" style="text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="Tabel SIDBANK" /> 
+				                </f:facet>
+				                <h:outputText value="#{b.rdfvf2}"/>
+				            </p:column>
+				            <p:column filterBy="#{b.rdfvf3}" sortBy="#{b.rdfvf3}" filterMatchMode="contains" style="text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="Field SIDBANK" /> 
+				                </f:facet>
+				                <h:outputText value="#{b.rdfvf3}"/>
+				            </p:column>
+				            <p:column filterBy="#{b.rdfvf4}" sortBy="#{b.rdfvf4}" filterMatchMode="contains" style="text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="Kel. Validasi (KV)" /> 
+				                </f:facet>
+				                <h:outputText value="#{b.rdfvf4}"/>
+				            </p:column>
+				            <p:column style="text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="Tabel ER (Exception Report)" /> 
+				                </f:facet>
+				                <h:outputText value="#{b.rdfvf5}"/>
+				            </p:column>
+				        </p:dataTable>
+			        <f:facet name="actions">
+			            <h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+			                <h:outputText styleClass="ui-icon ui-icon-help" />
+			            </h:commandLink>
+			        </f:facet>
+			    	</p:panel>
+				    </p:tab>
+				 
+				    <p:tab id="tab2" title="Role Validasi Tabel 2">
+				        <p:panel header="">
+				        <p:dataTable id="RV02" value="#{StructRKV.messagesRKV}" var="a"
+	        			style="overflow: auto;width: 100%;height:400px">
+				        	<p:column filterBy="#{a.rkvf1}">
+				        		<f:facet name="header"> 
+				            	<h:outputText value="Kel. Validasi (KV)" /> 
+				           		</f:facet>
+				            	<h:outputText value="#{a.rkvf1}"/>
+				            </p:column>
+				            <p:column filterBy="#{a.rkvf2}" sortBy="#{a.rkvf2}" filterMatchMode="contains" style="text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="Sub KV" /> 
+				                </f:facet>
+				                <h:outputText value="#{a.rkvf2}"/>
+				            </p:column>
+				            <p:column filterBy="#{a.rkvf3}" sortBy="#{a.rkvf3}" filterMatchMode="contains" style="text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="Kode Error" /> 
+				                </f:facet>
+				                <h:outputText value="#{a.rkvf3}"/>
+				            </p:column>
+				            <p:column filterBy="#{a.rkvf4}" sortBy="#{a.rkvf4}" filterMatchMode="contains" style="text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="Kel. Error" /> 
+				                </f:facet>
+				                <h:outputText value="#{a.rkvf4}"/>
+				            </p:column>
+				            <p:column style="text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="is Field Date/Num?" /> 
+				                </f:facet>
+				                <h:outputText value="#{a.rkvf5}"/>
+				            </p:column>
+				            <p:column>
+				                <f:facet name="header"> 
+				                <h:outputText value="Referensi Tabel" /> 
+				                </f:facet>
+				                <h:outputText value="#{a.rkvf6}"/>
+				            </p:column>
+				            <p:column>
+				                <f:facet name="header"> 
+				                <h:outputText value="Referensi Field" /> 
+				                </f:facet>
+				                <h:outputText value="#{a.rkvf7}"/>
+				            </p:column>
+				             <p:column>
+				                <f:facet name="header"> 
+				                <h:outputText value="Kondisi Utama" /> 
+				                </f:facet>
+				                <h:outputText value="#{a.rkvf8}"/>
+				            </p:column>
+				             <p:column style="text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="Operator" /> 
+				                </f:facet>
+				                <h:outputText value="#{a.rkvf9}"/>
+				            </p:column>
+				             <p:column>
+				                <f:facet name="header"> 
+				                <h:outputText value="Kondisi Tambahan" /> 
+				                </f:facet>
+				                <h:outputText value="#{a.rkvf10}"/>
+				            </p:column>
+				             <p:column filterBy="#{a.rkvf11}" sortBy="#{a.rkvf11}" filterMatchMode="contains">
+				                <f:facet name="header"> 
+				                <h:outputText value="Deskripsi ER" /> 
+				                </f:facet>
+				                <h:outputText value="#{a.rkvf11}"/>
+				            </p:column>
+				        </p:dataTable>
+				        <f:facet name="actions">
+				            <h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				                <h:outputText styleClass="ui-icon ui-icon-help" />
+				            </h:commandLink>
+				        </f:facet>
+				    	</p:panel>
+				    </p:tab>
+				 
+				    <p:tab id="tab3" title="Role Validasi Tabel 3">
+				        <p:panel header="">
+				        <p:dataTable id="RV03" value="#{StructRK.messagesRK}" var="c"
+	        			style="overflow: auto;width: 100%;height:400px">
+				        	<p:column style="text-align:center">
+				        		<f:facet name="header"> 
+				            	<h:outputText value="Karakter" /> 
+				           		</f:facet>
+				            	<h:outputText value="#{c.rkf1}"/>
+				            </p:column>
+				            <p:column filterBy="#{c.rkf2}" sortBy="#{c.rkf2}" filterMatchMode="contains" style="text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="Kel. Validasi (KV)" /> 
+				                </f:facet>
+				                <h:outputText value="#{c.rkf2}"/>
+				            </p:column>
+				            <p:column style="text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="Keterangan" /> 
+				                </f:facet>
+				                <h:outputText value="#{c.rkf3}"/>
+				            </p:column>
+				            <p:column style="text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="Kriteria 1" /> 
+				                </f:facet>
+				                <h:outputText value="#{a.rkf4}"/>
+				            </p:column>
+				            <p:column style="text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="Kriteria 2" /> 
+				                </f:facet>
+				                <h:outputText value="#{c.rkf5}"/>
+				            </p:column>
+				        </p:dataTable>
+				        <f:facet name="actions">
+				            <h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				                <h:outputText styleClass="ui-icon ui-icon-help" />
+				            </h:commandLink>
+				        </f:facet>
+				    	</p:panel>
+				    </p:tab>
+				    
+				    <p:tab id="tab4" title="Role Validasi Tabel 4">
+				        <p:panel header="">
+				        <p:dataTable id="RV04" value="#{StructRKED.messagesRKED}" var="d"
+	        			style="overflow: auto;width: 100%;height:400px">
+				        	<p:column filterBy="#{d.rkedf1}" sortBy="#{d.rkedf1}" filterMatchMode="contains" style="text-align:center">
+				        		<f:facet name="header"> 
+				            	<h:outputText value="Sub KV" /> 
+				           		</f:facet>
+				            	<h:outputText value="#{d.rkedf1}"/>
+				            </p:column>
+				            <p:column filterBy="#{d.rkedf2}" sortBy="#{d.rkedf2}" filterMatchMode="contains" style="text-align:center">
+				                <f:facet name="header"> 
+				                <h:outputText value="Deskripsi ER" /> 
+				                </f:facet>
+				                <h:outputText value="#{d.rkedf2}"/>
+				            </p:column>
+				        </p:dataTable>
+				        <f:facet name="actions">
+				            <h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				                <h:outputText styleClass="ui-icon ui-icon-help" />
+				            </h:commandLink>
+				        </f:facet>
+				    	</p:panel>
+				    </p:tab>
+				 
+				</p:tabView>
+                </h:form>
+                </p:layoutUnit>
+            </p:layout>
+
+            <p:dialog header="Basic Dialog" widgetVar="dlg" modal="true">
+                <h:outputText value="Resistance to PrimeFaces is futile!" />
+            </p:dialog>
+
+        </h:body>
+
+    </f:view>
+
+</html>

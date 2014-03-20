@@ -1,0 +1,84 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:of="http://omnifaces.org/functions">
+
+    <div id="header-wm" class="row">
+
+        <a href="#{root}">
+            <h:panelGroup id="logo-holder-wm" styleClass="span2" style="width: 100px" layout="">
+                <h:panelGroup layout="block" id="logo-wm"/>
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" id="header-title-wm" styleClass="span6">
+                <h:panelGroup style="height: 20px; font-family: Arial;" layout="block"/>
+                <h:panelGroup layout="block">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Sistem Sentralisasi Pelaporan" style="color: #FB9337; font-weight: bold;"/>
+                        <h:outputText value="SID" style="font-weight: bold;"/>
+                    </h:panelGrid>
+                </h:panelGroup>
+            </h:panelGroup>
+        </a>
+
+        <div id="header-info-wm" class="span7" style="float: right">
+            <div id="header-info-wm-upper" style="height: 15px">
+                <!--SESSION DATE -->
+                <div style="float: right">
+                    <h:outputText value="SESSION :"/>
+                    <h:outputText value="  "/>
+                    <h:outputText value="#{appBean.sessionDate.sessiondate}" rendered="#{!appBean.appSetting.siteIsAllowBackDate}">
+                        <f:convertDateTime pattern="#{appBean.appSetting.siteFormatdate.name}"/>
+                    </h:outputText>
+                </div>
+            </div>
+
+            <div  id="header-info-wm-bottom" class="row">
+                <div style="float: right">
+                    <div class="span7">
+                        <!--LAYOUT USER INFO-->
+                        <h:form id="formUserInfo">
+                            <p:commandButton styleClass="userinfo" style="float: right;" id="userInfoDrop" type="button" value="Admin"/>
+                            <p:overlayPanel for="userInfoDrop">
+                                <h:panelGrid columns="2" styleClass="verticalAlignTop">
+                                    <h:panelGroup>
+                                        <p:graphicImage height="150" width="125" value="#{of:concat(appBean.imageUploadDir, userSessionBean.authenticatedUser.photo.url)}" rendered="#{userSessionBean.authenticatedUser.photo.url != null}"/>
+                                        <p:graphicImage height="150" width="125" rendered="#{userSessionBean.authenticatedUser.photo.url == null}"/>
+                                    </h:panelGroup>
+
+                                    <h:panelGroup layout="block" styleClass="userdata">
+                                        <h4>Administrator</h4><br/>
+                                        <ul>
+                                            <li><p:commandLink value="Setting" onclick="PF('userSettingDialog').show();"/></li>
+                                            <li><p:commandLink id="logoutButton" value="Logout" action="/login.xhtml"/></li>
+                                        </ul>
+                                    </h:panelGroup>
+                                </h:panelGrid>
+                            </p:overlayPanel>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--MENU BAR-->
+    <p:menubar id="menu-wm">
+        <p:submenu label="System" icon="ui-icon-home">
+            <p:menuitem value="SSP-SID Engine" url="engine.jsf" icon="ui-icon-gear"/>
+            <p:submenu label="Setting Parameter" icon="ui-icon-wrench">
+                <p:menuitem value="Validasi" url="viewrolevalidasi.jsf" icon="ui-icon-flag"/>
+                <p:menuitem value="Buka/Tutup Fields" url="#" icon="ui-icon-locked"/>
+            </p:submenu>
+        </p:submenu>
+
+        <p:submenu label="SID Tools" icon="ui-icon-person">
+            <p:menuitem value="Informasi" url="index.jsf" icon="ui-icon-note"></p:menuitem>
+            <p:menuitem value="Rekap Validasi" url="er.jsf" icon="ui-icon-print"></p:menuitem>
+        </p:submenu>
+    </p:menubar>  
+</ui:composition>
